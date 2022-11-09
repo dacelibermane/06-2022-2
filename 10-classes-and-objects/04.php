@@ -7,21 +7,11 @@ class Movie
     private string $rating;
 
 
-    public function __construct($title, $studio, $rating)
+    public function __construct(string $title, string $studio, string $rating)
     {
         $this->title = $title;
         $this->studio = $studio;
         $this->rating = $rating;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getStudio(): string
-    {
-        return $this->studio;
     }
 
     public function getRating(): string
@@ -30,17 +20,17 @@ class Movie
     }
 
 
-    public function getMovies(): string
-    {
-        return "Title: " . $this->title . "\nStudio: " . $this->studio . "\nRating: " . $this->rating . "\n";
-    }
+//    public function getMovies(): string
+//    {
+//        return "Title: " . $this->title . "\nStudio: " . $this->studio . "\nRating: " . $this->rating . "\n";
+//    }
 
 
-    public function getPG($movies):array
+    public static function getPG(array $movies):array
     {
         $moviesPG = [];
         foreach ($movies as $movie) {
-            if ($this->rating = "PG") {
+            if ($movie->getRating() === "PG") {
                 $moviesPG [] = $movie;
             }
         }
@@ -56,9 +46,11 @@ $movies = [
     new Movie("Spider-Man: Into the Spider-Verse", "Columbia pictures", "PG"),
 ];
 
-foreach ($movies as $movie){
-    $moviesPG = $movie->getPG($movie);
-}
+
+$moviesPg = Movie::getPG($movies);
+
+var_dump($moviesPg);
+
 
 
 

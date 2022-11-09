@@ -1,13 +1,11 @@
 <?php
 
-
-
-
 class EnergyDrinks{
 
     private int $customers = 12467;
     private float $energyDrinks = 0.14;
     private float $citrusDrinks = 0.64;
+
 
     public function getCustomers(): int
     {

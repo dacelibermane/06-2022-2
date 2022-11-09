@@ -7,7 +7,7 @@ class Product
     private int $amount;
 
 
-    public function __construct($name, $startPrice, $amount)
+    public function __construct(string $name, float $startPrice, int $amount)
     {
         $this->name = $name;
         $this->startPrice = $startPrice;
