@@ -5,8 +5,7 @@ class Movie
     private string $title;
     private string $studio;
     private string $rating;
-
-
+    
     public function __construct(string $title, string $studio, string $rating)
     {
         $this->title = $title;
@@ -19,25 +18,16 @@ class Movie
         return $this->rating;
     }
 
-
-//    public function getMovies(): string
-//    {
-//        return "Title: " . $this->title . "\nStudio: " . $this->studio . "\nRating: " . $this->rating . "\n";
-//    }
-
-
     public static function getPG(array $movies):array
     {
-        $moviesPG = [];
+        $filteredMovies = [];
         foreach ($movies as $movie) {
             if ($movie->getRating() === "PG") {
-                $moviesPG [] = $movie;
+                $filteredMovies[] = $movie;
             }
         }
-        return $moviesPG;
+        return $filteredMovies;
     }
-
-
 }
 
 $movies = [
@@ -49,7 +39,6 @@ $movies = [
 
 $moviesPg = Movie::getPG($movies);
 
-var_dump($moviesPg);
 
 
 
