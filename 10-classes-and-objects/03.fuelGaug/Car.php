@@ -21,17 +21,12 @@ class Car
     }
 
 
-    /**
-     * @return FuelGauge
-     */
     public function getFuelGauge(): FuelGauge
     {
         return $this->fuelGauge;
     }
 
-    /**
-     * @return Odometer
-     */
+
     public function getOdometer(): Odometer
     {
         return $this->odometer;
