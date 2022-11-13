@@ -3,33 +3,65 @@
 class SavingsAccount
 {
 
-    private float $startingBalance;
+    private float $balance;
     private float $annualInterestRate;
-    private float $monthDeposit;
+    private int $month;
+    private float $totalDeposited = 0;
+    private float $totalWithdrawn = 0;
+    private float $interestEarned = 0;
 
-    private float $deposit = 0;
-    private float $withdrawal = 0;
-
-    public function __construct($startingBalance,$annualInterestRate, $monthDeposit)
+    public function __construct(float $startingBalance, float $annualInterestRate, int $month)
     {
-        $this->startingBalance = $startingBalance;
+        $this->balance = $startingBalance;
         $this->annualInterestRate = $annualInterestRate;
-        $this->monthDeposit = $monthDeposit;
+        $this->month = $month;
     }
 
-    public function getStartingBalance(): float
+    public function getBalance(): float
     {
-        return $this->startingBalance;
+        return $this->balance;
     }
 
-    public function amountOfWithdrawal($withdrawal):float
+    public function getMonth(): float
     {
-       return $this->startingBalance -= $withdrawal;
+        return $this->month;
     }
 
-    public function amountOfDeposit($deposit):float
+    public function amountOfWithdrawal($withdrawal): void
     {
-       return $this->startingBalance -= $deposit;
+        $this->balance -= $withdrawal;
+        $this->totalWithdrawn += $withdrawal;
+    }
+
+    public function amountOfDeposit($deposit): void
+    {
+        $this->balance += $deposit;
+        $this->totalDeposited += $deposit;
+    }
+
+
+    public function getTotalDeposited(): float
+    {
+        return $this->totalDeposited;
+    }
+
+    public function getTotalWithdrawn(): float
+    {
+        return $this->totalWithdrawn;
+    }
+
+
+    public function getInterestEarned(): float
+    {
+        return $this->interestEarned;
+    }
+
+
+    public function addMonthlyInterest(): void
+    {
+        $monthlyInterest = $this->annualInterestRate / 12 * $this->balance;
+        $this->interestEarned += $monthlyInterest;
+        $this->balance += $monthlyInterest;
     }
 
 
