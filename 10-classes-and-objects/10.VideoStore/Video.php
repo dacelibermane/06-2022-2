@@ -1,15 +1,13 @@
 <?php
-class Video{
-
+class Video
+{
     private string $title;
-    private bool $available;
-    private int $averageRating;
+    private bool $checkedOut = false;
+    private array $ratings = [];
 
-
-    public function construct(string $title,bool $available, int $averageRating){
+    public function __construct(string $title)
+    {
         $this->title = $title;
-        $this->available = $available;
-        $this->averageRating = $averageRating;
     }
 
     public function getTitle(): string
@@ -17,12 +15,33 @@ class Video{
         return $this->title;
     }
 
-    public function isAvailable(): bool
+    public function checkOut(): void
     {
-        return $this->available;
+        $this->checkedOut = true;
     }
 
+    public function checkIn(): void
+    {
+        $this->checkedOut = false;
+    }
 
+    public function rateVideo(int $rating): void
+    {
+        if ($rating > 0 && $rating <= 5) {
+            $this->ratings[] = $rating;
+        }
+    }
 
+    public function getAvgRating(): int
+    {
+        if ($this->ratings) {
+            return intval(array_sum($this->ratings) / count($this->ratings));
+        }
+        return 0;
+    }
+
+    public function getChecked(): bool
+    {
+        return $this->checkedOut;
+    }
 }
-
